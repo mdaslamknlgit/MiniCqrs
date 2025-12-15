@@ -1,20 +1,27 @@
-using MiniCqrs.Data;
 using MiniCqrs.Models;
+using MiniCqrs.Infrastructure.Persistence;
 
-namespace MiniCqrs.Commands;
+namespace MiniCqrs.Commands.CreateLead;
 
 public class CreateLeadHandler
 {
-    public int Handle(CreateLeadCommand command)
+    private readonly MiniCqrsDbContext _dbContext;
+
+    public CreateLeadHandler(MiniCqrsDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    public void Handle(CreateLeadCommand command)
     {
         var lead = new Lead
         {
-            Id = FakeDatabase.Leads.Count + 1,
-            Name = command.Name
+            Name = command.Name,
+            Email = command.Email,
+            Phone = command.Phone
         };
 
-        FakeDatabase.Leads.Add(lead);
-
-        return lead.Id;
+        _dbContext.Leads.Add(lead);
+        _dbContext.SaveChanges();
     }
 }

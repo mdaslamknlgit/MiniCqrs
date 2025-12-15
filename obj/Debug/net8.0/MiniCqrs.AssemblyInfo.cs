@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MiniCqrs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+600b58be9ac28909d189fe81d622e4b33dbf8598")]
 [assembly: System.Reflection.AssemblyProductAttribute("MiniCqrs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MiniCqrs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

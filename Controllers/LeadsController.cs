@@ -1,25 +1,37 @@
-using MiniCqrs.Commands;
-using MiniCqrs.Queries;
 using Microsoft.AspNetCore.Mvc;
+using MiniCqrs.Commands;
+using MiniCqrs.Commands.CreateLead;
+using MiniCqrs.Queries;
 
 namespace MiniCqrs.Controllers;
 
 [ApiController]
-[Route("api/leads")]
+[Route("api/[controller]")]
 public class LeadsController : ControllerBase
 {
-    [HttpPost]
-    public IActionResult Create([FromBody] CreateLeadCommand command)
+    private readonly CreateLeadHandler _createLeadHandler;
+    private readonly GetLeadByIdHandler _getLeadByIdHandler;
+
+    public LeadsController(
+        CreateLeadHandler createLeadHandler,
+        GetLeadByIdHandler getLeadByIdHandler)
     {
-        var handler = new CreateLeadHandler();
-        return Ok(handler.Handle(command));
+        _createLeadHandler = createLeadHandler;
+        _getLeadByIdHandler = getLeadByIdHandler;
+    }
+
+    [HttpPost]
+    public IActionResult Create(CreateLeadCommand command)
+    {
+        _createLeadHandler.Handle(command);
+        return Ok();
     }
 
     [HttpGet("{id}")]
     public IActionResult GetById(int id)
     {
-        var handler = new GetLeadByIdHandler();
-        var lead = handler.Handle(new GetLeadByIdQuery { Id = id });
-        return lead == null ? NotFound() : Ok(lead);
+        var lead = _getLeadByIdHandler.Handle(new GetLeadByIdQuery { Id = id });
+        if (lead == null) return NotFound();
+        return Ok(lead);
     }
 }

@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "qmGXyxjGybr6ds5Ta6NvN9D1E5T+F0WsbfAKxAImuBQ=",
+  "Source": "MiniCqrs",
+  "BasePath": "_content/MiniCqrs",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
